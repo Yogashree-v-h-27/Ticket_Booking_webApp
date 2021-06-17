@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration page</title>
+</head>
+<body>
+<form action="servlet/Register" method="post">
+Customer_ID:<input type="text" name="Customer ID"/><br/><br/>
+Customer_Name:<input type="text" name="Customer Name"/><br/><br/>
+Customer_Address:<input type="text" name="Customer Address"/><br/><br/>
+<input type="submit" value="Register">
+</form>
+</body>
+</html>

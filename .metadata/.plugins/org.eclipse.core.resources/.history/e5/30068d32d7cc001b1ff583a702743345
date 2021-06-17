@@ -1,0 +1,45 @@
+package com.info;
+
+import java.util.ArrayList;
+
+public class Customer {
+String CustomerID;
+String CustomerName;
+String CustomerAddress;
+List<String> tickets;
+public Customer(String customerID, String customerName, String customerAddress,
+		ArrayList<String> tickets) {
+	super();
+	CustomerID = customerID;
+	CustomerName = customerName;
+	CustomerAddress = customerAddress;
+	this.tickets = tickets;
+}
+public Customer() {
+}
+public String getCustomerID() {
+	return CustomerID;
+}
+public void setCustomerID(String customerID) {
+	CustomerID = customerID;
+}
+public String getCustomerName() {
+	return CustomerName;
+}
+public void setCustomerName(String customerName) {
+	CustomerName = customerName;
+}
+public String getCustomerAddress() {
+	return CustomerAddress;
+}
+public void setCustomerAddress(String customerAddress) {
+	CustomerAddress = customerAddress;
+}
+public ArrayList<String> getTickets() {
+	return tickets;
+}
+public void setTickets(ArrayList<String> tickets) {
+	this.tickets = tickets;
+}
+
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Generator</title>
+</head>
+<body>
+<form action="servlet1" method="post">
+From:<input type="text" name="from_Place"/><br/><br/>
+To:<input type="text" name="to_Destination"/><br/><br/>
+Amount:<input type="text" name="amount"/><br/><br/>
+Date:<input type="text" name="travel_date"/><br/><br/>
+Customer ID:<input type="text" name="CustomerID"/><br/><br/>
+<input type="button" value="Next"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+package com.register;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class LoginUser extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    public LoginUser() {
+        super();
+        
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try{
+		String CustomerID=request.getParameter("CustomerID");
+		String passowrd=request.getParameter("password");
+		String dbID=null;
+		String dbPassword=null;
+		String sql="select * from Customer where CustomerID=? and password=?";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@MLW0224.corpindia.local:1521:xe", 
+				"system", "root");
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+	}
+	}
+	
+

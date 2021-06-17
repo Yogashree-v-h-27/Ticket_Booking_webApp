@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+</head>
+<body>
+<form action="LoginUser" method="post">
+<table>
+<tr><td>Customer ID:</td><td><input type="text" name="CustomerID"/></td></tr>
+<tr><td>Password:</td><td><input type="text" name="password"/></td></tr>
+<tr><td><input type="submit" value="Login"/></td></tr>
+<p>First time user ?<a href="register.html">Register here</a><p>Otherwise Login Below</p>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+package com.info;
+
+public class Ticket {
+String from_Place;
+String to_Destination;
+int amount;
+String travel_date;
+public Ticket(String from_Place, String to_Destination, int amount, String travel_date) {
+	super();
+	this.from_Place = from_Place;
+	this.to_Destination = to_Destination;
+	this.amount = amount;
+	this.travel_date = travel_date;
+}
+public String getFrom_Place() {
+	return from_Place;
+}
+public void setFrom_Place(String from_Place) {
+	this.from_Place = from_Place;
+}
+public String getTo_Destination() {
+	return to_Destination;
+}
+public void setTo_Destination(String to_Destination) {
+	this.to_Destination = to_Destination;
+}
+public int getAmount() {
+	return amount;
+}
+public void setAmount(int amount) {
+	this.amount = amount;
+}
+public String getDate() {
+	return date;
+}
+public void setDate(String date) {
+	this.date = date;
+}
+
+
+}

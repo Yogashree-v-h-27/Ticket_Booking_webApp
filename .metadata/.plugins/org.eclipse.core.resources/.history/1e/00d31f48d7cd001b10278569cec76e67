@@ -1,0 +1,5 @@
+package com.ticketinterface;
+
+public interface DatabaseOp {
+
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+</head>
+<body>
+<form action="/servlet1" method="post">
+Customer ID:<input type="text" name="CustomerID"/><br/><br/>
+Password:<input type="text" name="password"/><br/><br/>
+<input type="submit" value="Login"/>
+<p>First time user ?<a href="register.html">Register</a>
+</form>
+</body>
+</html>

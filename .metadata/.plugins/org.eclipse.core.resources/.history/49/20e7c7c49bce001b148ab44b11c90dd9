@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Generator</title>
+</head>
+<body>
+<form action="Ticket" method="post">
+<table>
+<tr><td>From:</td><td><input type="text" name="from_Place"/></td></tr>
+<tr><td>To:</td><td><input type="text" name="to_Destination"/></td></tr>
+<tr><td>Amount:</td><td><input type="text" name="amount"/></td></tr>
+<tr><td>Date:</td><td><input type="text" name="travel_date"/></td></tr>
+<!-- <tr><td>Customer ID:</td><td><input type="text" name="CustomerID"/></td></tr> -->
+<tr><td><input type="submit" value="Next"/></td></tr>
+</table>
+</form>
+<p><a href="ViewTicket">View Ticket</a></p>
+</body>
+</html>

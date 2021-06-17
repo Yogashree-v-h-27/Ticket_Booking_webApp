@@ -1,0 +1,56 @@
+package com.info;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TicketBooking extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		String result="Ticket data entered successfully";
+		response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		
+		String from_Place=request.getParameter("from_Place");
+		String to_Destination=request.getParameter("to_Destination");
+		int amount=Integer.parseInt(request.getParameter("amount"));
+		String travel_date=request.getParameter("travel_date");
+		String CustomerID=request.getParameter("CustomerID");
+		try{  
+			Class.forName("oracle.jdbc.driver.OracleDriver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:oracle:thin:@MLW0224.corpindia.local:1521:xe",
+			"system","root");  
+			String stmt="insert into Ticket values(?,?,?,?,?)";
+			PreparedStatement ps=con.prepareStatement(stmt); 
+			
+			ps.setString(1, from_Place);
+			ps.setString(2, to_Destination);
+			ps.setInt(3, amount);
+			ps.setString(4, travel_date);
+			ps.setString(5, CustomerID);
+			//con.commit();
+			ps.executeUpdate(); 
+			out.println(result);
+			RequestDispatcher rd=request.getRequestDispatcher(
+						"view.html");
+				rd.forward(request, response);
+			con.close();
+			
+	}catch (Exception e2)
+	{System.out.println(e2);}  
+        
+out.close();  
+}  
+	
+}

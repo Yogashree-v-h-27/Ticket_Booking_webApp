@@ -1,0 +1,27 @@
+package com.info;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TicketBooking extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+    public TicketBooking() {
+        super();
+       
+    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		String from=request.getParameter("from");
+		String to=request.getParameter("to");
+		int amount=Integer.parseInt(request.getParameter("amount"));
+		String date=request.getParameter("date");
+	}
+
+}

@@ -1,0 +1,53 @@
+package com.register;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class RegisterUser extends HttpServlet {
+	String message="";
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out=response.getWriter();
+		String CustomerID=request.getParameter("CustomerID");
+		String CustomerName=request.getParameter("CustomerName");
+		String CustomerAddress=request.getParameter("CustomerAddress");
+		try{  
+			Class.forName("oracle.jdbc.driver.OracleDriver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:oracle:thin:@MLW0224.corpindia.local:1521:xe","system","root");  
+			  
+			PreparedStatement ps=con.prepareStatement(  
+			"insert into Customer values(?,?,?)");  
+			ps.setString(1, CustomerID);  
+			ps.setString(2,CustomerName);  
+			ps.setString(3,CustomerAddress);  
+			
+			int i=ps.executeUpdate(); 
+			if(CustomerID.equals("") || CustomerName.equals("") || CustomerAddress.equals("")){
+				message = "User name and password required!";
+			}
+			if(i>0)  
+			out.print("You are successfully registered");  
+		RequestDispatcher rd=request.getRequestDispatcher("ticket.html");
+			rd.forward(request, response);
+			          
+			}catch (Exception e2) {System.out.println(e2);}  
+			          
+			out.close();  
+			}  
+	
+		
+	}
+
+

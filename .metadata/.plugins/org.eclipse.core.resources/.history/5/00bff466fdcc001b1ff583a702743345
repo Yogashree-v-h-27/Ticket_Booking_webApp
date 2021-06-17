@@ -1,0 +1,104 @@
+package com.info;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomerDao {
+	public static Connection getConnection(){  
+        Connection con=null;  
+        try{  
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            con=DriverManager.getConnection(
+            		"jdbc:oracle:thin:@localhost:1521:xe","system","root");  
+        }catch(Exception e){System.out.println(e);}  
+        return con;  
+    }  
+    public static int save(Customer c){  
+        int status=0;  
+        try{  
+            Connection con=CustomerDao.getConnection();  
+            PreparedStatement ps=con.prepareStatement(  
+                         "insert into Customer(CustomerID,CustomerName,CustomerAddress) "
+                         + "values (?,?,?)");  
+            ps.setString(1,c.getCustomerID());  
+            ps.setString(2,c.getCustomerName());  
+            ps.setString(3,c.getCustomerAddress());  
+              
+            status=ps.executeUpdate();  
+              
+            con.close();  
+        }catch(Exception ex){ex.printStackTrace();}  
+          
+        return status;  
+    }  
+    public static int update(Customer c){  
+        int status=0;  
+        try{  
+            Connection con=CustomerDao.getConnection();  
+            PreparedStatement ps=con.prepareStatement(  
+                         "update Customer set CustomerName=?,CustomerAddress=? where CustomerID=?");  
+            ps.setString(1,c.getCustomerID());  
+            ps.setString(2,c.getCustomerName());  
+            ps.setString(3,c.getCustomerAddress());    
+            
+            status=ps.executeUpdate();  
+              
+            con.close();  
+        }catch(Exception ex){ex.printStackTrace();}  
+          
+        return status;  
+    }  
+    public static int delete(String CustomerID){  
+        int status=0;  
+        try{  
+            Connection con=CustomerDao.getConnection();  
+            PreparedStatement ps=con.prepareStatement("delete from Customer where CustomerID=?");  
+            ps.setString(1,CustomerID);  
+            status=ps.executeUpdate();  
+              
+            con.close();  
+        }catch(Exception e){e.printStackTrace();}  
+          
+        return status;  
+    }  
+    public static Customer getCustomerById(String CustomerID){  
+        Customer c=new Customer();  
+          
+        try{  
+            Connection con=CustomerDao.getConnection();  
+            PreparedStatement ps=con.prepareStatement("select * from Customer where CustomerID=?");  
+            ps.setString(1,CustomerID);  
+            ResultSet rs=ps.executeQuery();  
+            if(rs.next()){  
+                c.setCustomerID(CustomerID); 
+                c.setCustomerName(CustomerName);
+                c.setCustomerAddress(customerAddress);
+                
+            }  
+            con.close();  
+        }catch(Exception ex){ex.printStackTrace();}  
+          
+        return c;  
+    }  
+    public static List<String> getAllCustomer(){  
+        List<String> tickets=new ArrayList<String>();  
+          
+        try{  
+            Connection con=CustomerDao.getConnection();  
+            PreparedStatement ps=con.prepareStatement("select * from Customer");  
+            ResultSet rs=ps.executeQuery();  
+            while(rs.next()){  
+                Customer c=new Customer();  
+                c.setCustomerID(rs.getString(1));  
+                c.setCustomerName(rs.getString(2)); 
+                c.setCustomerAddress(rs.getString(3));
+              
+                tickets.add(c);
+            }  
+            con.close();  
+        }catch(Exception e){e.printStackTrace();}  
+          
+        return tickets;  
+    }  
+}

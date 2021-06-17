@@ -1,0 +1,43 @@
+package com.crud;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.info.Customer;
+import com.info.Ticket;
+import com.info.TicketDao;
+
+public class SaveServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public SaveServlet() {
+        super();
+       
+    }
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");  
+        PrintWriter out=response.getWriter();  
+        String CustomerID=request.getParameter("CustomerID"); 
+        String from_Place=request.getParameter("from_Place");  
+        String to_Destination=request.getParameter("to_Destination");  
+        int amount=Integer.parseInt(request.getParameter("amount"));
+        String travel_date=request.getParameter("travel_date");
+        Ticket t=new Ticket();
+        t.setCustomerID(CustomerID);
+        t.setFrom_Place(from_Place);
+        t.setTo_Destination(to_Destination);
+        t.setAmount(amount);
+        t.setTravel_date(travel_date);
+        int status=TicketDao.save(t);
+        
+        
+        
+	}
+
+}

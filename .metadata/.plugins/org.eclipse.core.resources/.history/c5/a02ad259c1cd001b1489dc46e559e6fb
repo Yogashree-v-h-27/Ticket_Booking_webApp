@@ -1,0 +1,40 @@
+package com.info;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class TicketDao {
+	public static Connection getConnection(){  
+        Connection con=null;  
+        try{  
+            Class.forName("oracle.jdbc.driver.OracleDriver");  
+            con=DriverManager.getConnection(
+            		"jdbc:oracle:thin:@localhost:1521:xe","system","root");  
+        }catch(Exception e){System.out.println(e);}  
+        return con;  
+    }  
+	public static int save(Ticket t){
+		int status=0;
+		Connection con=TicketDao.getConnection();
+		try {
+			PreparedStatement ps=con.prepareStatement("insert into Ticket"
+					+ "(CustomerID,from_Place,to_Destination,amount,travel_date) "
+					+ "values(?,?,?,?,?)");
+			ps.setString(1,t.getCustomerID());
+			ps.setString(2,t.getFrom_Place());
+			ps.setString(3,t.getTo_Destination());
+			ps.setInt(4, t.getAmount());
+			ps.setString(5, t.getTravel_date());
+			 status=ps.executeUpdate();
+			 con.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return status;
+		
+	}
+}

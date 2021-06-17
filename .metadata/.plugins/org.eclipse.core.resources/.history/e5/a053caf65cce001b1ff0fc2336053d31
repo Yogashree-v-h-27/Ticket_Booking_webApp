@@ -1,0 +1,44 @@
+package com.info;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class TicketBookingDao 
+{
+
+	private String dburl="jdbc:oracle:thin:@MLW0224.corpindia.local:1521:xe";
+	 private String dbname="system";
+	 private String dbpassword="root";
+	 private String dbdriver="oracle.jdbc.driver.OracleDriver";
+	 public Connection getConnection(){
+		 Connection con=null;
+	try{  
+		Class.forName(dbdriver);  
+		con=DriverManager.getConnection(dburl,dbname,dbpassword);  	
+}catch (SQLException e){
+	e.printStackTrace();
+}
+	return con;
+}  
+	 public String insert(TicketMember member)
+	 {
+		 Connection con=getConnection();
+		 String result="Ticket data entered successfully";
+		 String sql="insert into Ticket values(?,?,?,?,?)";
+		 try {
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1, member.getFrom_Place());
+			ps.setString(2,member.getTo_Destination() );
+			ps.setInt(3, member.getAmount());
+			ps.setString(4, member.getTravel_date());
+			ps.setString(5, member.getCustomerID());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+}
+}
